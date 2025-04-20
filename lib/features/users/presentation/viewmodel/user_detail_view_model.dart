@@ -10,7 +10,7 @@ class UserDetailsNotifier extends FamilyAsyncNotifier<User, int> {
   Future<void> reload() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() =>
-        ref.read(userRepository).fetchUserById(arg)); // arg بدل ref.arg
+        ref.read(userRepository).fetchUserById(arg));
   }
 }
 final userDetailsProvider = AsyncNotifierProviderFamily<UserDetailsNotifier, User, int>(
