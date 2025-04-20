@@ -4,7 +4,6 @@ import 'user_view_model.dart';
 class UserDetailsNotifier extends FamilyAsyncNotifier<User, int> {
   @override
   Future<User> build(int id) async {
-    ref.invalidateSelf();  //
     return ref.read(userRepository).fetchUserById(id);
   }
 
@@ -18,4 +17,23 @@ final userDetailsProvider = AsyncNotifierProviderFamily<UserDetailsNotifier, Use
   UserDetailsNotifier.new,
 );
 
+//AutoDisposeFamilyAsyncNotifier
 
+
+// class UserDetailsNotifier extends AutoDisposeFamilyAsyncNotifier<User, int> {
+//   @override
+//   Future<User> build(int id) async {
+//     return ref.read(userRepository).fetchUserById(id);
+//   }
+//
+//   Future<void> reload() async {
+//     state = const AsyncLoading();
+//     state = await AsyncValue.guard(() =>
+//         ref.read(userRepository).fetchUserById(arg));
+//   }
+// }
+//
+// final userDetailsProvider =
+// AutoDisposeAsyncNotifierProviderFamily<UserDetailsNotifier, User, int>(
+//   UserDetailsNotifier.new,
+// );
